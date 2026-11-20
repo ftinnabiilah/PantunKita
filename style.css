@@ -1,0 +1,799 @@
+/* ==========================================================================
+   PANTUNKITA STYLESHEET
+   Matches Exhibits in Figures 4, 5, and 6 (Batik Banner, Warm Cream Canvas,
+   Terracotta/Slate/Gold Badges, Olive Navigation Pills, and Rounded Pantun Cards)
+   ========================================================================== */
+
+:root {
+  --bg-cream: #EFECE6;
+  --card-bg: #F6F4EF;
+  --card-border: #8E8B82;
+  --text-dark: #232220;
+  --text-muted: #5C5952;
+
+  /* Exhibit Accent Palette */
+  --olive-nav: #5D6A44;
+  --olive-nav-hover: #4A5535;
+  --terracotta: #C6736E;
+  --terracotta-active: #B05853;
+  --slate-blue: #96A3AB;
+  --slate-blue-active: #748590;
+  --gold-badge: #DEC078;
+  --gold-btn: #DFCA90;
+  --gold-btn-hover: #D2B872;
+  --modal-terracotta: #C27470;
+  --heart-red: #D62828;
+  --heart-inactive: #C9C5BC;
+
+  /* Batik Banner Colors */
+  --batik-navy: #2D4356;
+  --batik-crimson: #9E2A2B;
+  --batik-ochre: #D9A05B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   BATIK HEADER BANNER
+   ========================================================================== */
+.batik-banner {
+  position: relative;
+  width: 100%;
+  min-height: 108px;
+  background:
+    radial-gradient(circle at 18% 35%, rgba(158, 42, 43, 0.85) 0%, transparent 26%),
+    radial-gradient(circle at 78% 60%, rgba(217, 160, 91, 0.82) 0%, transparent 28%),
+    radial-gradient(circle at 50% 20%, rgba(45, 67, 86, 0.92) 0%, transparent 45%),
+    repeating-linear-gradient(
+      45deg,
+      #2B4154 0px,
+      #2B4154 14px,
+      #4A6572 14px,
+      #4A6572 28px,
+      #8E3538 28px,
+      #8E3538 42px,
+      #C9965B 42px,
+      #C9965B 56px
+    );
+  border-bottom: 3px solid #3B3630;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 16px 20px;
+}
+
+.batik-pattern-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  pointer-events: none;
+}
+
+.banner-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.brand-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 5vw, 3.3rem);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  text-shadow:
+    -2px -2px 0 #1A1918,
+     2px -2px 0 #1A1918,
+    -2px  2px 0 #1A1918,
+     2px  2px 0 #1A1918,
+     0px  4px 10px rgba(0, 0, 0, 0.45);
+}
+
+.brand-subtitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #FDF8EE;
+  background: rgba(26, 25, 24, 0.65);
+  display: inline-block;
+  padding: 2px 12px;
+  border-radius: 999px;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   NAVIGATION BAR (Label A: Cipta, Kegemaran, Tentang)
+   ========================================================================== */
+.top-nav {
+  max-width: 1200px;
+  margin: 16px auto 8px;
+  padding: 0 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.nav-pill {
+  background-color: var(--olive-nav);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-pill:hover {
+  background-color: var(--olive-nav-hover);
+  transform: translateY(-1px);
+}
+
+.nav-pill.active {
+  background-color: #3D472B;
+  box-shadow: 0 0 0 2px var(--bg-cream), 0 0 0 4px var(--olive-nav);
+}
+
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.8px solid #FFFFFF;
+  display: inline-block;
+}
+
+.nav-pill.active .nav-dot {
+  background-color: #FFFFFF;
+}
+
+.nav-heart {
+  font-size: 0.95rem;
+  color: #FFFFFF;
+}
+
+.fav-badge {
+  background: rgba(255, 255, 255, 0.22);
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+}
+
+/* ==========================================================================
+   MAIN LAYOUT & STEP HEADERS
+   ========================================================================== */
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 24px 60px;
+}
+
+.view-section.hidden {
+  display: none;
+}
+
+.creation-layout {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.filters-column {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.step-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 1.05rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-terracotta {
+  background-color: var(--terracotta);
+}
+
+.badge-slate {
+  background-color: var(--slate-blue);
+}
+
+.badge-gold {
+  background-color: var(--gold-badge);
+}
+
+.step-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.45rem;
+  color: var(--text-dark);
+  line-height: 1.15;
+}
+
+.step-subtitle {
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ==========================================================================
+   FILTER OPTION BOXES & PILLS (Labels B & C)
+   ========================================================================== */
+.option-box {
+  border: 1.5px solid #B5B1A8;
+  border-radius: 20px;
+  padding: 16px 14px 12px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.pill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pill-list.extra-options {
+  margin-top: 10px;
+}
+
+.pill-list.hidden {
+  display: none;
+}
+
+.filter-pill {
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  padding: 11px 18px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.12s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-pill:hover {
+  transform: translateX(2px);
+}
+
+.pill-terracotta {
+  background-color: var(--terracotta);
+}
+
+.pill-terracotta.active {
+  background-color: var(--terracotta-active);
+  box-shadow: 0 4px 10px rgba(176, 88, 83, 0.35);
+}
+
+.pill-slate {
+  background-color: var(--slate-blue);
+}
+
+.pill-slate.active {
+  background-color: var(--slate-blue-active);
+  box-shadow: 0 4px 10px rgba(116, 133, 144, 0.35);
+}
+
+.pill-radio {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.45);
+  display: inline-block;
+  flex-shrink: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.pill-terracotta.active .pill-radio {
+  background-color: #6E1E1B;
+  transform: scale(1.15);
+}
+
+.pill-slate.active .pill-radio {
+  background-color: #2B3B45;
+  transform: scale(1.15);
+}
+
+.btn-lagi {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  margin-top: 10px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--text-muted);
+  cursor: pointer;
+  text-align: center;
+  padding: 4px;
+}
+
+.btn-lagi:hover {
+  color: var(--text-dark);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESULTS COLUMN, SEARCH & PANTUN CARDS (Label D)
+   ========================================================================== */
+.results-header-row {
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.step-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.keyword-input {
+  padding: 8px 14px;
+  border: 1.5px solid #B5B1A8;
+  border-radius: 999px;
+  background-color: #FAF9F6;
+  font-family: inherit;
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  min-width: 230px;
+  outline: none;
+}
+
+.keyword-input:focus {
+  border-color: var(--olive-nav);
+}
+
+.btn-shuffle {
+  padding: 8px 14px;
+  border: 1.5px solid var(--olive-nav);
+  border-radius: 999px;
+  background-color: transparent;
+  color: var(--olive-nav);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.btn-shuffle:hover {
+  background-color: var(--olive-nav);
+  color: #FFFFFF;
+}
+
+.filter-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 10px;
+}
+
+.fallback-notice {
+  background-color: #FFF6E0;
+  border: 1px solid #DEC078;
+  color: #6B5218;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  margin-bottom: 16px;
+}
+
+.fallback-notice.hidden {
+  display: none;
+}
+
+.pantun-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.pantun-grid.fav-grid-3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.pantun-card {
+  border: 1.5px solid var(--card-border);
+  border-radius: 22px;
+  padding: 18px 20px 16px;
+  background-color: var(--card-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 215px;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.pantun-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(35, 34, 32, 0.08);
+}
+
+.card-top-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-number {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text-dark);
+}
+
+.card-tags {
+  display: flex;
+  gap: 6px;
+}
+
+.tag-chip {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #E5E0D5;
+  color: #4A4740;
+}
+
+.pantun-verse {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 16px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 0.98rem;
+  line-height: 1.55;
+  color: var(--text-dark);
+}
+
+.pantun-verse::before {
+  content: "“";
+  position: absolute;
+  left: -2px;
+  top: -8px;
+  font-size: 2.1rem;
+  font-style: normal;
+  color: #B5B0A4;
+  line-height: 1;
+}
+
+.pantun-verse p {
+  margin-bottom: 2px;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.btn-heart {
+  background: none;
+  border: none;
+  font-size: 1.45rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--heart-inactive);
+  transition: transform 0.15s ease, color 0.15s ease;
+  padding: 2px;
+}
+
+.btn-heart:hover {
+  transform: scale(1.15);
+}
+
+.btn-heart.saved {
+  color: var(--heart-red);
+}
+
+.btn-copy {
+  background-color: var(--gold-btn);
+  color: var(--text-dark);
+  border: none;
+  border-radius: 999px;
+  padding: 7px 18px;
+  font-family: inherit;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+
+.btn-copy:hover {
+  background-color: var(--gold-btn-hover);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   FAVOURITES VIEW (Figure 5)
+   ========================================================================== */
+.favourites-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 22px;
+}
+
+.page-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 800;
+  font-size: 2.1rem;
+  color: var(--text-dark);
+  line-height: 1.1;
+}
+
+.page-subheading {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.btn-clear-favs {
+  background: transparent;
+  border: 1.5px solid var(--terracotta);
+  color: var(--terracotta-active);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-clear-favs:hover {
+  background: var(--terracotta);
+  color: #FFFFFF;
+}
+
+.btn-clear-favs.hidden {
+  display: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  border: 1.5px dashed #B5B1A8;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.empty-state.hidden {
+  display: none;
+}
+
+.empty-heart {
+  font-size: 2.8rem;
+  color: var(--terracotta);
+  margin-bottom: 8px;
+}
+
+.empty-state h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.4rem;
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  color: var(--text-muted);
+  max-width: 420px;
+  margin: 0 auto 18px;
+  font-size: 0.92rem;
+}
+
+.btn-primary-action {
+  background-color: var(--olive-nav);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   MODAL POPUP: APA ITU PANTUN? (Figure 6 - Label H)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(239, 236, 230, 0.72);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  background-color: var(--modal-terracotta);
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 36px 40px;
+  box-shadow: 0 20px 45px rgba(35, 34, 32, 0.25);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: #FFFFFF;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.modal-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+.modal-body p {
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.65;
+  margin-bottom: 16px;
+}
+
+.modal-structure-box {
+  background: rgba(0, 0, 0, 0.14);
+  border-radius: 14px;
+  padding: 14px 18px;
+  font-size: 0.9rem;
+}
+
+.structure-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.modal-structure-box ul {
+  padding-left: 18px;
+}
+
+.modal-structure-box li {
+  margin-bottom: 4px;
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION (FR-05)
+   ========================================================================== */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: #232220;
+  color: #FFFFFF;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(16px);
+  pointer-events: none;
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  z-index: 1200;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (NFR-03 & NFR-07)
+   ========================================================================== */
+@media (max-width: 960px) {
+  .creation-layout {
+    grid-template-columns: 1fr;
+  }
+  .pantun-grid.fav-grid-3col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .top-nav {
+    justify-content: center;
+  }
+  .pantun-grid,
+  .pantun-grid.fav-grid-3col {
+    grid-template-columns: 1fr;
+  }
+  .modal-card {
+    padding: 28px 24px;
+  }
+  .keyword-input {
+    width: 100%;
+  }
+}

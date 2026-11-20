@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PantunKita — Pantun Caption Assistant for Social Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Batik Header Banner (Matches Figures 4, 5, 6) -->
+  <header class="batik-banner">
+    <div class="batik-pattern-overlay"></div>
+    <div class="banner-inner">
+      <h1 class="brand-title">PANTUNKITA</h1>
+      <p class="brand-subtitle">Tradition in Every Click • Pantun Verse Digital Solutions</p>
+    </div>
+  </header>
+
+  <!-- Navigation Bar (Label A: Cipta, Kegemaran, Tentang) -->
+  <nav class="top-nav" aria-label="Navigasi Utama">
+    <div class="nav-container">
+      <button id="nav-cipta" class="nav-pill active" onclick="switchView('cipta')">
+        <span class="nav-dot"></span> Cipta
+      </button>
+      <button id="nav-kegemaran" class="nav-pill" onclick="switchView('kegemaran')">
+        <span class="nav-heart">♥</span> Kegemaran <span id="fav-badge" class="fav-badge">0</span>
+      </button>
+      <button id="nav-tentang" class="nav-pill" onclick="openAboutModal()">
+        <span class="nav-dot"></span> Tentang
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-container">
+
+    <!-- =========================================================
+         VIEW 1: PANTUN CREATION INTERFACE (Figure 4)
+         ========================================================= -->
+    <section id="view-cipta" class="view-section active">
+      <div class="creation-layout">
+
+        <!-- LEFT SIDEBAR: 01 Pilih Acara & 02 Pilih Nada (Labels B & C) -->
+        <aside class="filters-column">
+
+          <!-- Step 01: Pilih Acara (Label B - FR-01) -->
+          <div class="filter-block">
+            <div class="step-header">
+              <span class="step-badge badge-terracotta">01</span>
+              <div>
+                <h2 class="step-title">Pilih Acara</h2>
+                <p class="step-subtitle">Apa yang ingin diraikan?</p>
+              </div>
+            </div>
+
+            <div class="option-box">
+              <div id="acara-primary-list" class="pill-list">
+                <button class="filter-pill pill-terracotta active" data-acara="Hari Perayaan" onclick="selectAcara('Hari Perayaan', this)">
+                  <span class="pill-radio"></span> Hari Perayaan
+                </button>
+                <button class="filter-pill pill-terracotta" data-acara="Graduasi" onclick="selectAcara('Graduasi', this)">
+                  <span class="pill-radio"></span> Graduasi
+                </button>
+                <button class="filter-pill pill-terracotta" data-acara="Persahabatan" onclick="selectAcara('Persahabatan', this)">
+                  <span class="pill-radio"></span> Persahabatan
+                </button>
+              </div>
+
+              <!-- Expandable "Lagi..." Acara Options -->
+              <div id="acara-extra-list" class="pill-list extra-options hidden">
+                <button class="filter-pill pill-terracotta" data-acara="Kasih Sayang" onclick="selectAcara('Kasih Sayang', this)">
+                  <span class="pill-radio"></span> Kasih Sayang
+                </button>
+                <button class="filter-pill pill-terracotta" data-acara="Nasihat & Motivasi" onclick="selectAcara('Nasihat & Motivasi', this)">
+                  <span class="pill-radio"></span> Nasihat & Motivasi
+                </button>
+                <button class="filter-pill pill-terracotta" data-acara="Budi & Adat" onclick="selectAcara('Budi & Adat', this)">
+                  <span class="pill-radio"></span> Budi & Adat
+                </button>
+                <button class="filter-pill pill-terracotta" data-acara="Umum & Santai" onclick="selectAcara('Umum & Santai', this)">
+                  <span class="pill-radio"></span> Umum & Santai
+                </button>
+                <button class="filter-pill pill-terracotta" data-acara="Semua" onclick="selectAcara('Semua', this)">
+                  <span class="pill-radio"></span> Semua Acara
+                </button>
+              </div>
+
+              <button id="btn-more-acara" class="btn-lagi" onclick="toggleExtraAcara()">Lagi...</button>
+            </div>
+          </div>
+
+          <!-- Step 02: Pilih Nada (Label C - FR-02) -->
+          <div class="filter-block">
+            <div class="step-header">
+              <span class="step-badge badge-slate">02</span>
+              <div>
+                <h2 class="step-title">Pilih Nada</h2>
+                <p class="step-subtitle">Apa suasana yang diinginkan?</p>
+              </div>
+            </div>
+
+            <div class="option-box">
+              <div id="nada-primary-list" class="pill-list">
+                <button class="filter-pill pill-slate active" data-nada="Inspirasi" onclick="selectNada('Inspirasi', this)">
+                  <span class="pill-radio"></span> Inspirasi
+                </button>
+                <button class="filter-pill pill-slate" data-nada="Jenaka" onclick="selectNada('Jenaka', this)">
+                  <span class="pill-radio"></span> Jenaka
+                </button>
+                <button class="filter-pill pill-slate" data-nada="Formal" onclick="selectNada('Formal', this)">
+                  <span class="pill-radio"></span> Formal
+                </button>
+              </div>
+
+              <!-- Expandable "Lagi..." Nada Option -->
+              <div id="nada-extra-list" class="pill-list extra-options hidden">
+                <button class="filter-pill pill-slate" data-nada="Semua" onclick="selectNada('Semua', this)">
+                  <span class="pill-radio"></span> Semua Nada
+                </button>
+              </div>
+
+              <button id="btn-more-nada" class="btn-lagi" onclick="toggleExtraNada()">Lagi...</button>
+            </div>
+          </div>
+
+        </aside>
+
+        <!-- RIGHT PANEL: 03 Pilih Kegemaran Anda (Label D - FR-03, FR-04, FR-05, FR-06) -->
+        <section class="results-column">
+          <div class="step-header results-header-row">
+            <div class="step-header-left">
+              <span class="step-badge badge-gold">03</span>
+              <div>
+                <h2 class="step-title">Pilih Kegemaran Anda</h2>
+                <p class="step-subtitle">Anda boleh salin teks dan post di media sosial</p>
+              </div>
+            </div>
+
+            <!-- Keyword Search & Shuffle Controls (FR-03) -->
+            <div class="search-controls">
+              <input
+                type="text"
+                id="keyword-input"
+                class="keyword-input"
+                placeholder="Cari kata kunci (cth: raya, ilmu, sahabat)..."
+                oninput="handleKeywordSearch()"
+              />
+              <button class="btn-shuffle" onclick="shuffleSuggestions()" title="Papar cadangan pantun lain">
+                ↻ Cadangan Lain
+              </button>
+            </div>
+          </div>
+
+          <!-- Active Filter Status & NFR-04 Fallback Banner -->
+          <div id="filter-status-bar" class="filter-status-bar">
+            <span id="active-filter-text">Menunjukkan pantun: <strong>Hari Perayaan</strong> • <strong>Inspirasi</strong></span>
+            <span id="result-count-text" class="result-count"></span>
+          </div>
+
+          <div id="fallback-notice" class="fallback-notice hidden"></div>
+
+          <!-- Pantun Cards Grid (Label D) -->
+          <div id="suggestions-grid" class="pantun-grid">
+            <!-- Cards injected dynamically by app.js -->
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         VIEW 2: FAVOURITE PANTUN INTERFACE (Figure 5 - FR-07)
+         ========================================================= -->
+    <section id="view-kegemaran" class="view-section hidden">
+      <div class="favourites-header">
+        <div>
+          <h2 class="page-heading">Pantun kegemaran.</h2>
+          <p class="page-subheading">Koleksi anda.</p>
+        </div>
+        <button id="btn-clear-favs" class="btn-clear-favs hidden" onclick="clearAllFavourites()">
+          Padam Semua
+        </button>
+      </div>
+
+      <!-- Empty State -->
+      <div id="favourites-empty" class="empty-state hidden">
+        <div class="empty-heart">♡</div>
+        <h3>Tiada pantun kegemaran lagi</h3>
+        <p>Klik ikon hati pada mana-mana kad pantun di halaman <strong>Cipta</strong> untuk menyimpannya di sini.</p>
+        <button class="btn-primary-action" onclick="switchView('cipta')">Terokai Pantun</button>
+      </div>
+
+      <!-- Saved Favourites Grid (Labels E, F, G) -->
+      <div id="favourites-grid" class="pantun-grid fav-grid-3col">
+        <!-- Favourite cards injected dynamically by app.js -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       POPUP MODAL: APA ITU PANTUN? (Figure 6 - FR-08, Label H)
+       ========================================================= -->
+  <div id="about-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="handleBackdropClick(event)">
+    <div class="modal-card">
+      <button class="modal-close-btn" onclick="closeAboutModal()" aria-label="Tutup">&times;</button>
+      <h2 id="modal-title" class="modal-heading">Apa itu pantun?</h2>
+      <div class="modal-body">
+        <p>
+          Pantun ialah salah satu bentuk puisi tradisional Melayu yang diwarisi sejak turun-temurun. Pantun biasanya terdiri daripada empat baris yang mempunyai rima akhir berselang-seli, iaitu <strong>ABAB</strong>. Dua baris pertama dikenali sebagai <em>pembayang</em>, manakala dua baris terakhir membawa <em>maksud</em> atau mesej yang ingin disampaikan.
+        </p>
+        <p>
+          Pantun bukan sekadar susunan kata, tetapi seni menyampaikan perasaan, nasihat dan makna melalui bahasa yang indah. Daripada ucapan hari lahir hingga ungkapan kasih sayang, pantun menjadikan setiap kata lebih istimewa dan bermakna.
+        </p>
+        <div class="modal-structure-box">
+          <div class="structure-title">Struktur Pantun 4 Kerat:</div>
+          <ul>
+            <li><strong>Baris 1 &amp; 2 (Pembayang):</strong> Gambaran alam atau suasana dengan rima akhir A – B.</li>
+            <li><strong>Baris 3 &amp; 4 (Maksud):</strong> Mesej utama pantun yang selari dengan rima A – B.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification for Copy Action (FR-05) -->
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    ✓ Pantun berjaya disalin ke papan keratan!
+  </div>
+
+  <!-- Load Dataset & Application Logic -->
+  <script src="dataset.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
