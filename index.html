@@ -12,15 +12,18 @@
 <style>
   .banner-container {
     width: 100%;             /* Stretches it to use all available width */
-    max-width: 100%;        /* Forces it to ignore the previous 800px limit */
-    margin: 0 auto 24px auto;/* Centers it and adds space below, removes top gap */
-    overflow: hidden;       /* Ensures everything remains clean inside */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow beneath the stretch banner */
+    max-width: 100%;        /* Allows it to use all horizontal space */
+    height: 200px;          /* Shrinks the banner’s height (default is usually ~400px; adjust to 150px if you want it even slimmer!) */
+    margin: 0 auto 24px auto;/* Centers it and adds space below */
+    overflow: hidden;       /* Visual cut off of top/bottom overflow */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow beneath */
   }
   
   .banner-img {
-    width: 100%;            /* Force the image to span edge-to-edge */
-    height: auto;           /* Keep aspect ratio perfect */
+    width: 100%;            /* Force image to span edge-to-edge */
+    height: 100%;           /* Scale image to fill the 200px container */
+    object-fit: cover;      /* Crops top and bottom instead of squeezing the image */
+    object-position: center;/* Focuses crop on the center to keep text visible */
     display: block;
   }
 </style>
