@@ -11,18 +11,16 @@
 </head>
 <style>
   .banner-container {
-    width: 90%;             /* Fits smaller screens comfortably */
-    max-width: 800px;       /* Shrinks banner span considerably (change to 700px or 600px if you want it even smaller) */
-    margin: 20px auto;      /* Adds space around top/bottom and centers it horizontally */
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0,0,0,0.1); /* Subtle border to outline the shrunk banner */
+    width: 100%;             /* Stretches it to use all available width */
+    max-width: 100%;        /* Forces it to ignore the previous 800px limit */
+    margin: 0 auto 24px auto;/* Centers it and adds space below, removes top gap */
+    overflow: hidden;       /* Ensures everything remains clean inside */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow beneath the stretch banner */
   }
   
   .banner-img {
-    width: 100%;
-    height: auto;
+    width: 100%;            /* Force the image to span edge-to-edge */
+    height: auto;           /* Keep aspect ratio perfect */
     display: block;
   }
 </style>
